@@ -11,7 +11,7 @@ System.config({
     '@*/*/package.json',
   ],
   map: {
-    'app': 'root:.dest/original',
+    'app': 'root:.dest/arrange',
     'rxjs/Rx': 'rxjs/bundles/Rx.umd.js',
   },
   packages: {
