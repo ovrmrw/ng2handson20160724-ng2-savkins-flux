@@ -1,0 +1,31 @@
+/* Styles go here */
+
+.hero-id {
+  background-color: #369;
+	color: white;
+}
+
+ul {
+  cursor: pointer;
+	list-style-type: none;
+}
+
+li {
+  margin: 5px;
+}
+
+li:hover {
+  margin-left: 10px;
+}
+
+.deco-linethrough {
+  text-decoration: line-through
+}
+
+.deco-underline {
+  text-decoration: underline;
+}
+
+.deco-none {
+  text-decoration: none;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--<base href="/" />-->
+    <title>Savkin's Flux</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+
+    <!-- Polyfill for async/await -->
+    <script src="node_modules/babel-polyfill/dist/polyfill.min.js"></script>
+
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>
+
+    <style>
+      todo {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <my-app>Loading...</my-app>
+  </body>
+</html>
+
+
+<!-- 
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
