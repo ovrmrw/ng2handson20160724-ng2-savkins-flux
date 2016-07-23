@@ -88,7 +88,7 @@ const state = new OpaqueToken("state");
 const stateAndDispatcher = [
   provide(initState, { useValue: { todos: [], visibilityFilter: 'SHOW_ALL' } }),
   provide(dispatcher, { useValue: new Subject<Action>() }),
-  provide(state, { useFactory: stateFn, deps: [new Inject(initState), new Inject(dispatcher)] })
+  provide(state, { useFactory: (state, dispatcher) => stateFn(state, dispatcher), deps: [initState, dispatcher] })
 ];
 
 
