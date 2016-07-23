@@ -1,5 +1,5 @@
 import { bootstrap } from '@angular/platform-browser-dynamic';
-import { Component, bind, Input, Output, EventEmitter, enableProdMode, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, enableProdMode, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Observable, Observer, Subject, BehaviorSubject } from 'rxjs/Rx';
 
 
@@ -42,8 +42,8 @@ class Store {
 
     Observable
       .zip(
-        todosStateReducer(initState.todos, dispatcher$),
-        filterStateReducer(initState.visibilityFilter, dispatcher$)
+      todosStateReducer(initState.todos, dispatcher$),
+      filterStateReducer(initState.visibilityFilter, dispatcher$)
       )
       .map<AppState>(states => {
         return { todos: states[0], visibilityFilter: states[1] }
@@ -102,15 +102,12 @@ function merge<T>(obj1: T, obj2: {}): T {
 
 ////////////////////////////////////////////////////////////////////////////////////
 // -- DI config
-class Dispatcher<T> extends Subject<T> {
-  constructor() { super(); }
-}
+class Dispatcher<T> extends Subject<T> { }
 
 const stateAndDispatcher = [
-
-  bind('initState').toValue({ todos: [], visibilityFilter: 'SHOW_ALL' } as AppState),
-  bind(Dispatcher).toValue(new Dispatcher<Action>()),
-  bind(Store).toFactory((state, dispatcher) => new Store(state, dispatcher), ['initState', Dispatcher])
+  { provide: 'initState', useValue: { todos: [], visibilityFilter: 'SHOW_ALL' } as AppState },
+  { provide: Dispatcher, useValue: new Dispatcher<Action>() },
+  { provide: Store, useFactory: (state, dispatcher) => new Store(state, dispatcher), deps: ['initState', Dispatcher] }
 ];
 
 
