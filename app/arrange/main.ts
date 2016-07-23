@@ -41,13 +41,13 @@ class Store {
     this.stateSubject$ = new BehaviorSubject(initState);
 
     Observable
-      .zip<AppState>(
+      .zip(
         todosStateReducer(initState.todos, dispatcher$),
-        filterStateReducer(initState.visibilityFilter, dispatcher$),
-        (todos, visibilityFilter) => {
-          return { todos, visibilityFilter } as AppState;
-        }
+        filterStateReducer(initState.visibilityFilter, dispatcher$)
       )
+      .map<AppState>(states => {
+        return { todos: states[0], visibilityFilter: states[1] }
+      })
       .subscribe(appState => {
         this.stateSubject$.next(appState);
       });
@@ -107,6 +107,7 @@ class Dispatcher<T> extends Subject<T> {
 }
 
 const stateAndDispatcher = [
+
   bind('initState').toValue({ todos: [], visibilityFilter: 'SHOW_ALL' } as AppState),
   bind(Dispatcher).toValue(new Dispatcher<Action>()),
   bind(Store).toFactory((state, dispatcher) => new Store(state, dispatcher), ['initState', Dispatcher])

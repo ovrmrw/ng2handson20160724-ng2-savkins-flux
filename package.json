@@ -10,7 +10,7 @@
     "babel": "babel .dest-pre --out-dir .dest --presets es2015 --source-maps",
     "babel:w": "babel .dest-pre --out-dir .dest --presets es2015 --source-maps -w",
     "start": "npm run clean && npm run tsc && concurrently -k \"npm run tsc:w\" \"npm run lite\" ",
-    "asyncawait": "npm run clean && npm run tsc && npm run babel && concurrently -k \"npm run tsc:w\" \"npm run babel:w\" \"npm run lite\" ",
+    "tsbabel": "npm run clean && npm run tsc && npm run babel && concurrently -k \"npm run tsc:w\" \"npm run babel:w\" \"npm run lite\" ",
     "lite": "lite-server --config config/browsersync.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

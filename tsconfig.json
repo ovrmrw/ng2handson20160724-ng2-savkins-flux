@@ -7,7 +7,9 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
-    "noImplicitAny": false,    
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
     "outDir": ".dest",
     "lib": [
       "es2015",
