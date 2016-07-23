@@ -1,6 +1,4 @@
 System.config({
-  baseURL: '/',
-  defaultJSExtensions: true,
   transpiler: false,
   paths: {
     '*': 'node_modules/*',
